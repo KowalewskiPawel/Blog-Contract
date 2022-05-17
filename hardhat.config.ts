@@ -1,9 +1,17 @@
-require("@nomiclabs/hardhat-ethers");
-require("dotenv").config();
+import * as dotenv from "dotenv";
+
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomiclabs/hardhat-etherscan";
+import "@nomiclabs/hardhat-waffle";
+import "@typechain/hardhat";
+import "hardhat-gas-reporter";
+import "solidity-coverage";
+
+dotenv.config();
 
 const { API_URL, PRIVATE_KEY } = process.env;
 
-module.exports = {
+const config: HardhatUserConfig = {
   solidity: "0.8.1",
   networks: {
     mumbai: {
@@ -12,3 +20,5 @@ module.exports = {
     },
   },
 };
+
+export default config;
