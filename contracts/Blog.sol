@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.1;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -18,7 +18,12 @@ contract Blog is ERC721URIStorage {
     IterableMapping.Map private posts;
 
     constructor() ERC721("Web3 Devs Poland", "W3PL") {
-        mintNFT((msg.sender), "https://bafybeidrgiq257blijz2olhpb4fkzu55pqimrgcorcnhcx3mpcyi3gi7ty.ipfs.dweb.link/uri.json");
+        _mint(msg.sender, _tokenIds.current());
+        _setTokenURI(
+            _tokenIds.current(),
+            "https://bafybeidrgiq257blijz2olhpb4fkzu55pqimrgcorcnhcx3mpcyi3gi7ty.ipfs.dweb.link/uri.json"
+        );
+        _tokenIds.increment();
     }
 
     modifier isPrivileged() {
