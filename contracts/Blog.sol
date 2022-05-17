@@ -18,7 +18,7 @@ contract Blog is ERC721URIStorage {
     IterableMapping.Map private posts;
 
     constructor() ERC721("Web3 Devs Poland", "W3PL") {
-        mintNFT((msg.sender), "");
+        mintNFT((msg.sender), "https://bafybeidrgiq257blijz2olhpb4fkzu55pqimrgcorcnhcx3mpcyi3gi7ty.ipfs.dweb.link/uri.json");
     }
 
     modifier isPrivileged() {
@@ -33,11 +33,11 @@ contract Blog is ERC721URIStorage {
     {
         _tokenIds.increment();
 
-        uint256 newItemId = _tokenIds.current();
-        _mint(user, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+        uint256 newUserId = _tokenIds.current();
+        _mint(user, newUserId);
+        _setTokenURI(newUserId, tokenURI);
 
-        return newItemId;
+        return newUserId;
     }
 
     function addPost(string memory _post) public isPrivileged {
